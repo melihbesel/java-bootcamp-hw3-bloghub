@@ -17,10 +17,10 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.payment.queue}")
     private String queueName;
 
-    @Value("${rabbitmq.exchange}")
+    @Value("${rabbitmq.exchange.payment}")
     private String exchange;
 
-    @Value("${rabbitmq.routingkey}")
+    @Value("${rabbitmq.routingkey.payment}")
     private String routingkey;
 
     @Bean

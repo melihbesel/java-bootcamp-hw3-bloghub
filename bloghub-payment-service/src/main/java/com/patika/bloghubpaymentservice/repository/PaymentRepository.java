@@ -1,21 +1,8 @@
 package com.patika.bloghubpaymentservice.repository;
 
 import com.patika.bloghubpaymentservice.model.Payment;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
-import java.util.List;
+public interface PaymentRepository extends JpaRepository<Payment,Long> {
 
-@Repository
-public class PaymentRepository {
-
-    private List<Payment> paymentList = new ArrayList<>();
-
-    public void save(Payment payment) {
-        paymentList.add(payment);
-    }
-
-    public List<Payment> findAll() {
-        return paymentList;
-    }
 }
