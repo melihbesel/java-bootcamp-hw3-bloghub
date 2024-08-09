@@ -1,6 +1,8 @@
 package com.patika.bloghubemailservice.model;
 
 import com.patika.bloghubemailservice.model.enums.EmailTemplate;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +30,7 @@ public class Email {
     private BigInteger id;
 
     private String to;
+    @Enumerated(EnumType.STRING)
     private EmailTemplate emailTemplate;
     private String emailContent;
     private LocalDateTime createdDateTime;
