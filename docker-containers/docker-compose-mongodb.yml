@@ -1,0 +1,35 @@
+
+version: "3"
+services:
+  mongodb-community-server:
+    container_name: mongodb1
+    logging:
+      driver: json-file
+    restart: no
+    ports:
+      - 0.0.0.0:27017:27017/tcp
+    network_mode: bridge
+    hostname: 99da5076cd4b
+    expose:
+      - 27017/tcp
+    user: mongodb
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - HOME=/data/db
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+      - MONGO_INITDB_DATABASE=admin
+    labels:
+      - description=Container configured with a standalone instance of
+        MongoDB
+      - maintainer=support@mongodb.com
+      - name=MongoDB Standalone
+      - org.opencontainers.image.ref.name=ubuntu
+      - org.opencontainers.image.version=22.04
+      - summary=MongoDB Standalone Container
+      - vendor=MongoDB
+      - version=7.0.12
+    tty: true
+    stdin_open: true
+    image: mongodb/mongodb-community-server:latest
+    command: mongodb
