@@ -6,6 +6,8 @@ import com.patika.bloghubpaymentservice.dto.response.PaymentResponse;
 import com.patika.bloghubpaymentservice.exception.BlogHubPaymentException;
 import com.patika.bloghubpaymentservice.exception.ExceptionMessages;
 import com.patika.bloghubpaymentservice.model.PaymentStatus;
+import com.patika.bloghubpaymentservice.producer.RabbitMqProducer;
+import com.patika.bloghubpaymentservice.producer.dto.CreatePaymentMessage;
 import com.patika.bloghubpaymentservice.repository.PaymentRepository;
 import com.patika.bloghubpaymentservice.model.Payment;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ import java.util.List;
 public class PaymentService {
 
     private final PaymentRepository paymentRepository;
+    private final RabbitMqProducer rabbitMqProducer;
 
     public PaymentResponse createPayment(PaymentRequest request) {
 
@@ -36,6 +39,8 @@ public class PaymentService {
         Payment payment = PaymentConverter.toEntity(request, PaymentStatus.PAID);
 
         paymentRepository.save(payment);
+
+        rabbitMqProducer.createPayment(new CreatePaymentMessage(payment.getAmount(), payment.getCreatedDateTime(), payment.getPaymentStatus(), payment.getEmail()));
 
         return PaymentConverter.toResponse(payment);
     }

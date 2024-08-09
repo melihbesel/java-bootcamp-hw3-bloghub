@@ -30,6 +30,7 @@ public class User {
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+        this.statusType = StatusType.WAITING_APPROVAL;
     }
     //private Set<SocialMedia> socialMediaList;
 
