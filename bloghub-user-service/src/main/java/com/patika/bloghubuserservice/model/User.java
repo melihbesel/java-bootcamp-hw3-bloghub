@@ -23,13 +23,16 @@ public class User {
 
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
     private UserType userType;
     private String bio;
+    @Enumerated(EnumType.STRING)
     private StatusType statusType;
 
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+        this.userType = UserType.STANDARD;
         this.statusType = StatusType.WAITING_APPROVAL;
     }
     //private Set<SocialMedia> socialMediaList;

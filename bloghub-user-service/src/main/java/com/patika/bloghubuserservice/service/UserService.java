@@ -10,6 +10,7 @@ import com.patika.bloghubuserservice.exception.BlogHubException;
 import com.patika.bloghubuserservice.exception.ExceptionMessages;
 import com.patika.bloghubuserservice.model.User;
 import com.patika.bloghubuserservice.model.enums.StatusType;
+import com.patika.bloghubuserservice.model.enums.UserType;
 import com.patika.bloghubuserservice.producer.RabbitMqProducer;
 import com.patika.bloghubuserservice.producer.dto.SendEmailMessage;
 import com.patika.bloghubuserservice.repository.UserRepository;
@@ -77,6 +78,14 @@ public class UserService {
         //paymentClientService.createPayment(new PaymentRequest(new BigDecimal("9.99"),email));
 
         //userRepository.changeStatus(email, foundUser.get());
+    }
+
+    public void changeType(String email, UserType userType) {
+        Optional<User> foundUser = userRepository.findByEmail(email);
+
+        foundUser.get().setUserType(userType);
+
+        userRepository.save(foundUser.get());
     }
 
     public void changeStatusBulk(List<String> emailList, StatusType statusType) {
