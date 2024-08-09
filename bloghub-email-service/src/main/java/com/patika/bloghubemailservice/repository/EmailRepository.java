@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+/**
+ * 1. bloghub-email-service MongoDB bağlayın.
+ */
 public interface EmailRepository extends MongoRepository<Email, String> {
     List<Email> findByEmailTemplate(EmailTemplate emailTemplate);
 

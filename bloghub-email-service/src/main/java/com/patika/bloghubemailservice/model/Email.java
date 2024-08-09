@@ -15,9 +15,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
+/**
+ * 1. bloghub-email-service MongoDB bağlayın.
+ */
 @Document(collection = "emails")
 public class Email {
 
+    /**
+     * 1. bloghub-email-service MongoDB bağlayın.
+     */
     @Id
     private BigInteger id;
 

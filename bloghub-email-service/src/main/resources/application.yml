@@ -1,3 +1,4 @@
+# 1. bloghub-email-service MongoDB bağlayın.
 spring:
   data:
     mongodb:
@@ -6,4 +7,5 @@ spring:
       host: localhost
       port: 27017
       database: admin
+# 1. bloghub-email-service MongoDB bağlayın.
 
