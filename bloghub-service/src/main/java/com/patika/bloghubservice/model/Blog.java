@@ -2,6 +2,7 @@ package com.patika.bloghubservice.model;
 
 import com.patika.bloghubservice.model.constant.BlogEntityConstants;
 import com.patika.bloghubservice.model.enums.BlogStatus;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Schema(name = BlogEntityConstants.TITLE, description = "Blog başlığı", example = "docker nedir ne ise yarar")
     @Column(name = BlogEntityConstants.TITLE, nullable = false)
     private String title;
 

@@ -5,6 +5,7 @@ import com.patika.bloghubservice.dto.response.BlogResponse;
 import com.patika.bloghubservice.dto.response.GenericResponse;
 import com.patika.bloghubservice.model.Blog;
 import com.patika.bloghubservice.service.BlogService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,9 @@ public class BlogController {
     private final BlogService blogService;
 
     @PostMapping()
+    @Operation(summary = "Blog oluşturur",
+            description = "Blog eklemek için kullanılır."
+    )
     public GenericResponse<BlogResponse> createBlog(@RequestBody BlogSaveRequest request) {
         return GenericResponse.success(blogService.createBlog(request), HttpStatus.CREATED);
     }
