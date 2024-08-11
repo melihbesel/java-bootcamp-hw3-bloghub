@@ -14,11 +14,18 @@ public class GlobalExceptionHandler {
 
     private final KafkaProducer kafkaProducer;
 
-    @ExceptionHandler(BlogHubException.class)
-    public GenericResponse handleBlogHubException(BlogHubException blogHubException){
-        log.info("ExceptionHandler çağrıldı");
-        kafkaProducer.sendException(blogHubException.getMessage());
-        return GenericResponse.failed(blogHubException.getMessage());
+    @ExceptionHandler(BlogHubUserException.class)
+    public GenericResponse handleBlogHubUserException(BlogHubUserException blogHubUserException){
+        log.info("BlogHubUserException ExceptionHandler çağrıldı");
+        kafkaProducer.sendException(blogHubUserException.getMessage());
+        return GenericResponse.failed(blogHubUserException.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public String handleException(RuntimeException exception){
+        log.info("RuntimeException ExceptionHandler çağrıldı");
+        kafkaProducer.sendException(exception.getMessage());
+        return exception.getMessage();
     }
 
 }

@@ -6,7 +6,7 @@ import com.patika.bloghubuserservice.client.email.service.EmailClientService;
 import com.patika.bloghubuserservice.converter.UserConverter;
 import com.patika.bloghubuserservice.dto.request.UserSaveRequest;
 import com.patika.bloghubuserservice.dto.response.UserResponse;
-import com.patika.bloghubuserservice.exception.BlogHubException;
+import com.patika.bloghubuserservice.exception.BlogHubUserException;
 import com.patika.bloghubuserservice.exception.ExceptionMessages;
 import com.patika.bloghubuserservice.model.User;
 import com.patika.bloghubuserservice.model.enums.StatusType;
@@ -37,13 +37,13 @@ public class UserService {
 
         if (request.getEmail() == null) {
             log.error("request: {},", request + "\n" + ExceptionMessages.USER_EMAIL_CAN_NOT_BE_EMPTY);
-            throw new BlogHubException(ExceptionMessages.USER_EMAIL_CAN_NOT_BE_EMPTY);
+            throw new BlogHubUserException(ExceptionMessages.USER_EMAIL_CAN_NOT_BE_EMPTY);
         }
 
         Optional<User> optionalUser = userRepository.findByEmail(request.getEmail());
 
         if (optionalUser.isPresent()) {
-            throw new BlogHubException(ExceptionMessages.USER_ALREADY_DEFINED);
+            throw new BlogHubUserException(ExceptionMessages.USER_ALREADY_DEFINED);
         } else {
             User savedUser = new User(request.getEmail(), request.getPassword()); // ödev password' hash'le
 
