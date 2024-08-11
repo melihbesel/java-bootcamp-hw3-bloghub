@@ -1,6 +1,7 @@
 package com.patika.bloghubemailservice.model;
 
 import com.patika.bloghubemailservice.model.enums.EmailTemplate;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ public class Email {
     @Id
     private BigInteger id;
 
+    @Schema(name = "to", description = "Geçerli bir email olmalıdır", example = "mbesel2005@gmail.com")
     private String to;
     @Enumerated(EnumType.STRING)
     private EmailTemplate emailTemplate;
