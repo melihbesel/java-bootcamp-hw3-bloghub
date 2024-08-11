@@ -16,7 +16,7 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("BlogHub Payment Service")
                         .version("1.0")
-                        .description("BlogHub User Payment Description")
+                        .description("BlogHub Payment Service Description")
                         .termsOfService("http://swagger.io/terms/")
                         .license(new License()
                                 .name("Apache 2.0")
