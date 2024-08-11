@@ -5,6 +5,7 @@ import com.patika.bloghubuserservice.dto.response.GenericResponse;
 import com.patika.bloghubuserservice.dto.response.UserResponse;
 import com.patika.bloghubuserservice.model.enums.StatusType;
 import com.patika.bloghubuserservice.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping()
+    @Operation(summary = "Kullanıcı oluşturur",
+            description = "Kullanıcı eklemek için kullanılır."
+    )
     public GenericResponse<UserResponse> createUser(@RequestBody UserSaveRequest request) {
         return GenericResponse.success(userService.saveUser(request), HttpStatus.CREATED);
     }
