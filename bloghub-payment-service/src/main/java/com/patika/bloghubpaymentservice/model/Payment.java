@@ -1,5 +1,6 @@
 package com.patika.bloghubpaymentservice.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Schema(name = "amount", description = "Ödeme miktarı", example = "9.99")
     @Column(name = "amount")
     private BigDecimal amount;
     @Column(name = "createdDateTime")
